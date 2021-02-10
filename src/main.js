@@ -123,3 +123,5 @@ function getRandomCover(){
 
   var newPoster = new Poster(poster1.src = randomImage, title1.innerText = randomTitles, quote1.innerText = randomQuotes)
 };
+
+//can return be used to assign newPoster to the global variable of currentPoster?
