@@ -98,10 +98,21 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
+//Iteration O:
+//1. On page load, a random image, title and quote appear
+//Steps: Utilize poster class to create a new Poster instance
+//       Change out current poster data using .innerText ("hacking")
+//
+//Research:
 var savedPosters = [];
 var currentPoster;
 
+var poster1 = document.querySelector('.poster-img');
+var title1 = document.querySelector('.poster-title');
+var quote1 = document.querySelector('.poster-quote');
+
 // event listeners go here 👇
+window.addEventListener('load', getRandomCover)
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -109,3 +120,15 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
+function getRandomCover(){
+  var randomImage = images[getRandomIndex(images)];
+  var randomTitles = titles[getRandomIndex(titles)];
+  var randomQuotes = quotes[getRandomIndex(quotes)];
+
+  var newPoster = new Poster(poster1.src = randomImage, title1.innerText = randomTitles, quote1.innerText = randomQuotes)
+};
+
+// function randomPoster() {
+//   poster.innerText =
+//   var newPoster = new Poster()
+// }
