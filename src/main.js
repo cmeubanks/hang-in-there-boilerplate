@@ -110,9 +110,11 @@ var currentPoster;
 var poster1 = document.querySelector('.poster-img');
 var title1 = document.querySelector('.poster-title');
 var quote1 = document.querySelector('.poster-quote');
+var randomPosterBtn = document.querySelector('.show-random');
 
 // event listeners go here 👇
 window.addEventListener('load', getRandomCover)
+randomPosterBtn.addEventListener('click', getRandomCover);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -127,6 +129,7 @@ function getRandomCover(){
 
   var newPoster = new Poster(poster1.src = randomImage, title1.innerText = randomTitles, quote1.innerText = randomQuotes)
 };
+
 
 // function randomPoster() {
 //   poster.innerText =
