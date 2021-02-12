@@ -113,25 +113,34 @@ var titleCustom = document.getElementById('poster-title');
 var quoteCustom = document.getElementById('poster-quote');
 
 //all the buttons
-var savePosterButton = document.querySelector('.save-poster');
-var showSavedPosterButton = document.querySelector('.show-saved');
-var randomizeButton = document.querySelector('.show-random');
-var makeYourOwnButton = document.querySelector('.show-form');
-var showPoster = document.querySelector('.make-poster');
-var nevermindShowMain = document.querySelector('.show-main');
-var backToMain = document.querySelector('.back-to-main');
+var buttons = {
+  savePoster: document.querySelector('.save-poster'),
+  showSaved: document.querySelector('.show-saved'),
+  random: document.querySelector('.show-random'),
+  makeYourOwn: document.querySelector('.show-form'),
+  makePoster: document.querySelector('.make-poster'),
+  nevermindShowMain: document.querySelector('.show-main'),
+  backToMain: document.querySelector('.back-to-main'),
+}
+// var savePosterButton = document.querySelector('.save-poster');
+// var showSavedPosterButton = document.querySelector('.show-saved');
+// var randomizeButton = document.querySelector('.show-random');
+// var makeYourOwnButton = document.querySelector('.show-form');
+// var showPoster = document.querySelector('.make-poster');
+// var nevermindShowMain = document.querySelector('.show-main');
+// var backToMain = document.querySelector('.back-to-main');
 
 var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
 window.addEventListener('load', randomizePoster);
-randomizeButton.addEventListener('click', randomizePoster);
-makeYourOwnButton.addEventListener('click', changeView);
-showSavedPosterButton.addEventListener('click', changeView);
-nevermindShowMain.addEventListener('click', changeView);
-backToMain.addEventListener('click', changeView);
-showPoster.addEventListener('click', customizePoster);
+buttons.random.addEventListener('click', randomizePoster);
+buttons.makeYourOwn.addEventListener('click', changeView);
+buttons.showSaved.addEventListener('click', changeView);
+buttons.nevermindShowMain.addEventListener('click', changeView);
+buttons.backToMain.addEventListener('click', changeView);
+buttons.makePoster.addEventListener('click', customizePoster);
 
 // functions and event handlers go here 👇
 function getRandomIndex(array) {
@@ -164,9 +173,17 @@ function customizePoster() {
 function changeView() {
   debugger
   var elements = [savedPoster, posterForm, mainPoster];
+  var currentButton = event.currentTarget.name;
+  var buttonNames = Object.keys(buttons);
   for (var i = 0; i < elements.length; i++) {
-      elements[i].classList.toggle('hidden');
-      
+    for (var j = 0; j < buttonNames.length; i++) {
+      if (elements[i].classList.contains('hidden') &&
+        currentButton === buttonNames[j]) {
+        elements[i].classList.remove('hidden');
+      } else if (!elements[i].classList.contains('hidden')) {
+        elements[i].classList.add('hidden');
+      };
+    }
   };
 };
 
