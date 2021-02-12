@@ -145,17 +145,18 @@ function displayPoster(imageUrl, title, quote) {
   event.preventDefault();
 };
 
-function randomizePoster () {
+function randomizePoster() {
   displayPoster(images[getRandomIndex(images)],
-  titles[getRandomIndex(titles)], quotes[getRandomIndex(quotes)])
+    titles[getRandomIndex(titles)], quotes[getRandomIndex(quotes)])
 };
 
-
 function customizePoster() {
+  var posterElements = [images, titles, quotes];
+  var posterValues = [imageCustom, titleCustom, quoteCustom];
   displayPoster(imageCustom.value, titleCustom.value, quoteCustom.value);
-  addToArray(images, imageCustom.value);
-  addToArray(titles, titleCustom.value);
-  addToArray(quotes, quoteCustom.value);
+  for (var i = 0; i < posterElements.length; i++) {
+    addToArray(posterElements[i], posterValues[i].value);
+  };
   currentPoster = new Poster(imageCustom.value, titleCustom.value, quoteCustom.value);
   showMain();
 };
@@ -182,4 +183,3 @@ function addToArray(arr, item) {
   arr.push(item);
   }
 };
-//WTF
