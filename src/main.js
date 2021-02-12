@@ -134,6 +134,7 @@ buttons.showSaved.addEventListener('click', showSavedShow);
 buttons.nevermindShowMain.addEventListener('click', showMain);
 buttons.backToMain.addEventListener('click', showMain);
 buttons.makePoster.addEventListener('click', customizePoster);
+buttons.savePoster.addEventListener('click', savePoster)
 
 // functions and event handlers go here 👇
 function getRandomIndex(array) {
@@ -189,5 +190,11 @@ function showMain() {
 function addToArray(arr, item) {
   if (!arr.includes(item)) {
     arr.push(item);
-  }
+  };
+};
+
+function savePoster() {
+  if (!savedPosters.includes(currentPoster)) {
+  savedPosters.push(currentPoster);
+  };
 };
