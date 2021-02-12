@@ -122,15 +122,15 @@ var nevermindShowMain = document.querySelector('.show-main');
 var backToMain = document.querySelector('.back-to-main');
 
 var savedPosters = [];
-var currentPoster;
+var currentPoster = null;
 
 // event listeners go here 👇
 window.addEventListener('load', randomizePoster);
 randomizeButton.addEventListener('click', randomizePoster);
-makeYourOwnButton.addEventListener('click', changeView);
-showSavedPosterButton.addEventListener('click', changeView);
-nevermindShowMain.addEventListener('click', changeView);
-backToMain.addEventListener('click', changeView);
+makeYourOwnButton.addEventListener('click', makeOwnShow);
+showSavedPosterButton.addEventListener('click', showSavedShow);
+nevermindShowMain.addEventListener('click', showMain);
+backToMain.addEventListener('click', showMain);
 showPoster.addEventListener('click', customizePoster);
 // functions and event handlers go here 👇
 
@@ -145,36 +145,41 @@ function displayPoster(imageUrl, title, quote) {
   event.preventDefault();
 };
 
-function randomizePoster() {
+function randomizePoster () {
   displayPoster(images[getRandomIndex(images)],
-    titles[getRandomIndex(titles)], quotes[getRandomIndex(quotes)])
+  titles[getRandomIndex(titles)], quotes[getRandomIndex(quotes)])
 };
+
 
 function customizePoster() {
-  var posterElements = [images, titles, quotes];
-  var posterValues = [imageCustom, titleCustom, quoteCustom];
   displayPoster(imageCustom.value, titleCustom.value, quoteCustom.value);
-  for (var i = 0; i < posterElements.length; i++) {
-    addToArray(posterElements[i], posterValues[i].value);
-  };
+  addToArray(images, imageCustom.value);
+  addToArray(titles, titleCustom.value);
+  addToArray(quotes, quoteCustom.value);
   currentPoster = new Poster(imageCustom.value, titleCustom.value, quoteCustom.value);
-  changeView();
+  showMain();
 };
 
-function changeView() {
-  var elements = [posterForm, mainPoster, savedPoster];
-  for (var i = 0; i < elements.length; i++) {
-    if (elements[i].classList.contains('hidden')) {
-      elements[i].classList.remove('hidden');
-    } else if (!elements[i].classList.contains('hidden')) {
-      elements[i].classList.add('hidden');
-    };
-  };
+function hide(pageShow, pageHide1, pageHide2) {
+  pageHide1.classList.add('hidden');
+  pageHide2.classList.add('hidden');
+  pageShow.classList.remove('hidden');
 };
 
+function makeOwnShow() {
+  hide(posterForm, mainPoster, savedPoster)
+};
+
+function showSavedShow() {
+  hide(savedPoster, posterForm, mainPoster)
+};
+
+function showMain() {
+  hide(mainPoster, savedPoster, posterForm)
+};
 function addToArray(arr, item) {
   if (!arr.includes(item)) {
-    arr.push(item);
-  };
+  arr.push(item);
+  }
 };
 //WTF
