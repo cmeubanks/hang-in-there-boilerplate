@@ -132,8 +132,8 @@ showSavedPosterButton.addEventListener('click', changeView);
 nevermindShowMain.addEventListener('click', changeView);
 backToMain.addEventListener('click', changeView);
 showPoster.addEventListener('click', customizePoster);
-// functions and event handlers go here 👇
 
+// functions and event handlers go here 👇
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
@@ -162,13 +162,11 @@ function customizePoster() {
 };
 
 function changeView() {
-  var elements = [posterForm, mainPoster, savedPoster];
+  debugger
+  var elements = [savedPoster, posterForm, mainPoster];
   for (var i = 0; i < elements.length; i++) {
-    if (elements[i].classList.contains('hidden')) {
-      elements[i].classList.remove('hidden');
-    } else if (!elements[i].classList.contains('hidden')) {
-      elements[i].classList.add('hidden');
-    };
+      elements[i].classList.toggle('hidden');
+      
   };
 };
 
