@@ -22,9 +22,9 @@ Feeling down? Feeling discouraged? The 'Hang In There!' app was designed to insp
 ******************************************************************
 Github Pages Link: https://cmeubanks.github.io/hang-in-there-boilerplate/
 
-##### Contributors:
-Chris Anderson
-Caroline Eubanks
+#### Contributors:
+- Chris Anderson
+- Caroline Eubanks
 
 ### Show A Random Poster And Save Poster:
 ![](https://media.giphy.com/media/7mO4ApIWLkEQ59Sps8/giphy.gif)
