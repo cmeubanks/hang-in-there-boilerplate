@@ -125,14 +125,15 @@ var buttons = {
 
 var savedPosters = [];
 var currentPoster;
+var miniPoster = document.querySelector('.mini-poster');
 
 //saved posters section
 //article element
 var savedParent = document.querySelector('.saved-posters-grid');
 
-
 // event listeners go here 👇
 window.addEventListener('load', randomizePoster);
+window.addEventListener('dblclick', deletePoster)
 buttons.random.addEventListener('click', randomizePoster);
 buttons.makeYourOwn.addEventListener('click', makeOwnShow);
 buttons.showSaved.addEventListener('click', showSavedShow);
@@ -140,7 +141,6 @@ buttons.nevermindShowMain.addEventListener('click', showMain);
 buttons.backToMain.addEventListener('click', showMain);
 buttons.makePoster.addEventListener('click', customizePoster);
 buttons.savePoster.addEventListener('click', savePoster);
-// buttons.savePoster.addEventListener('click', addToSavedGrid);
 
 // functions and event handlers go here 👇
 function getRandomIndex(array) {
@@ -201,14 +201,27 @@ function addToArray(arr, item) {
 function savePoster() {
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster);
+    var id = currentPoster.id;
     var imageURL = currentPoster.imageURL;
     var title = currentPoster.title;
     var quote = currentPoster.quote;
-    var sectionOpen = `<section class='mini-poster'>`;
-    var imgElement = `<img src=${imageURL}>`;
-    var h2Element = `<h2>${title}</h2>`;
-    var h4Element = `<h4>${quote}</h4>`;
+    var sectionOpen = `<section class='mini-poster' id="${id}">`;
+    var imgElement = `<img id=${id} src=${imageURL}>`;
+    var h2Element = `<h2 id=${id}>${title}</h2>`;
+    var h4Element = `<h4 id=${id}>${quote}</h4>`;
     var sectionClose = `</section>`;
     savedParent.innerHTML += sectionOpen + imgElement + h2Element + h4Element + sectionClose;
+  };
+};
+
+function deletePoster() {
+  debugger
+  var id = event.target.getAttribute('id');
+  var deleteTarget = document.getElementById(id);
+  for (var i = 0; i < savedPosters.length; i++) {
+    if (savedPosters[i].id == id) {
+      deleteTarget.remove();
+      savedPosters.splice(i, 1)
+    };
   };
 };
