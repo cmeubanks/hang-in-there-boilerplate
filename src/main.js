@@ -126,6 +126,11 @@ var buttons = {
 var savedPosters = [];
 var currentPoster;
 
+//saved posters section
+//article element
+var savedParent = document.querySelector('.saved-posters-grid');
+
+
 // event listeners go here 👇
 window.addEventListener('load', randomizePoster);
 buttons.random.addEventListener('click', randomizePoster);
@@ -134,6 +139,7 @@ buttons.showSaved.addEventListener('click', showSavedShow);
 buttons.nevermindShowMain.addEventListener('click', showMain);
 buttons.backToMain.addEventListener('click', showMain);
 buttons.makePoster.addEventListener('click', customizePoster);
+buttons.savePoster.addEventListener('click', savePoster)
 
 // functions and event handlers go here 👇
 function getRandomIndex(array) {
@@ -153,8 +159,8 @@ function randomizePoster() {
   for (var i = 0; i < arrays.length; i++) {
     randomPieces.push(arrays[i][getRandomIndex(arrays[i])]);
   };
-  displayPoster(randomPieces[0],randomPieces[1],randomPieces[2]);
-  currentPoster = new Poster(randomPieces[0],randomPieces[1],randomPieces[2]);
+  displayPoster(randomPieces[0], randomPieces[1], randomPieces[2]);
+  currentPoster = new Poster(randomPieces[0], randomPieces[1], randomPieces[2]);
 };
 
 function customizePoster() {
@@ -189,5 +195,22 @@ function showMain() {
 function addToArray(arr, item) {
   if (!arr.includes(item)) {
     arr.push(item);
-  }
+  };
+};
+
+function savePoster() {
+  if (!savedPosters.includes(currentPoster)) {
+    savedPosters.push(currentPoster);
+    for (var i = 0; i < savedPosters.length; i++) {
+      var imageURL = savedPosters[i].imageURL;
+      var title = savedPosters[i].title;
+      var quote = savedPosters[i].quote;
+      var sectionOpen = `<section class='mini-poster'>`;
+      var imgElement = `<img src=${imageURL}>`;
+      var h2Element = `<h2>${title}</h2>`;
+      var h4Element = `<h4>${quote}</h4>`;
+      var sectionClose = `</section>`;
+      savedParent.innerHTML += sectionOpen + imgElement + h2Element + h4Element + sectionClose;
+    };
+  };
 };
