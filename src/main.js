@@ -220,9 +220,13 @@ function savePoster() {
 
 
 function deletePoster() {
-var id = event.target.getAttribute('id');
-var deleteTarget = document.getElementById(id);
-// if (deleteTarget)
-deleteTarget.remove();
-return id
+  debugger
+  var id = event.target.getAttribute('id');
+  var deleteTarget = document.getElementById(id);
+  for (var i = 0; i < savedPosters.length; i++) {
+    if (savedPosters[i].id === id) {
+      deleteTarget.remove();
+      savedPosters.splice(i, 1)
+    };
+  };
 };
