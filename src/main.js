@@ -125,6 +125,7 @@ var buttons = {
 
 var savedPosters = [];
 var currentPoster;
+var clickedPoster =
 
 //saved posters section
 //article element
@@ -140,6 +141,8 @@ buttons.nevermindShowMain.addEventListener('click', showMain);
 buttons.backToMain.addEventListener('click', showMain);
 buttons.makePoster.addEventListener('click', customizePoster);
 buttons.savePoster.addEventListener('click', savePoster);
+window.addEventListener('dblclick', deletePoster)
+
 // buttons.savePoster.addEventListener('click', addToSavedGrid);
 
 // functions and event handlers go here 👇
@@ -201,14 +204,20 @@ function addToArray(arr, item) {
 function savePoster() {
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster);
+    var id = currentPoster.id;
     var imageURL = currentPoster.imageURL;
     var title = currentPoster.title;
     var quote = currentPoster.quote;
-    var sectionOpen = `<section class='mini-poster'>`;
-    var imgElement = `<img src=${imageURL}>`;
-    var h2Element = `<h2>${title}</h2>`;
-    var h4Element = `<h4>${quote}</h4>`;
+    var sectionOpen = `<section class='mini-poster' ${id}>`;
+    var imgElement = `<img class=${id} src=${imageURL}>`;
+    var h2Element = `<h2 class=${id}>${title}</h2>`;
+    var h4Element = `<h4 class=${id}>${quote}</h4>`;
     var sectionClose = `</section>`;
     savedParent.innerHTML += sectionOpen + imgElement + h2Element + h4Element + sectionClose;
   };
+};
+
+function deletePoster(event) {
+var click = event.target.getAttribute('id');
+return click
 };
