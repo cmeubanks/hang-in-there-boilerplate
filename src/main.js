@@ -160,7 +160,7 @@ function randomizePoster() {
     randomPieces.push(arrays[i][getRandomIndex(arrays[i])]);
   };
   displayPoster(randomPieces[0], randomPieces[1], randomPieces[2]);
-  currentPoster = new Poster(randomPieces[0], randomPieces[1], randomPieces[2]);
+  // currentPoster = new Poster(randomPieces[0], randomPieces[1], randomPieces[2]);
 };
 
 function customizePoster() {
@@ -170,7 +170,7 @@ function customizePoster() {
   for (var i = 0; i < posterElements.length; i++) {
     addToArray(posterElements[i], posterValues[i].value);
   };
-  currentPoster = new Poster(imageCustom.value, titleCustom.value, quoteCustom.value);
+  // currentPoster = new Poster(imageCustom.value, titleCustom.value, quoteCustom.value);
   showMain();
 };
 
@@ -185,7 +185,19 @@ function makeOwnShow() {
 };
 
 function showSavedShow() {
+  event.preventDefault();
   hide(savedPoster, posterForm, mainPoster)
+  for (var i = 0; i < savedPosters.length; i++) {
+    var imageURL = savedPosters[i].imageURL;
+    var title = savedPosters[i].title;
+    var quote = savedPosters[i].quote;
+    var sectionOpen = `<section class='mini-poster'>`;
+    var imgElement = `<img src=${imageURL}>`;
+    var h2Element = `<h2>${title}</h2>`;
+    var h4Element = `<h4>${quote}</h4>`;
+    var sectionClose = `</section>`;
+    savedParent.innerHTML += sectionOpen + imgElement + h2Element + h4Element + sectionClose;
+  };
 };
 
 function showMain() {
@@ -199,18 +211,20 @@ function addToArray(arr, item) {
 };
 
 function savePoster() {
+  // event.preventDefault();
+  currentPoster = new Poster(posterImage.src, posterTitle.innerText, posterQuote.innerText);
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster);
-    for (var i = 0; i < savedPosters.length; i++) {
-      var imageURL = savedPosters[i].imageURL;
-      var title = savedPosters[i].title;
-      var quote = savedPosters[i].quote;
-      var sectionOpen = `<section class='mini-poster'>`;
-      var imgElement = `<img src=${imageURL}>`;
-      var h2Element = `<h2>${title}</h2>`;
-      var h4Element = `<h4>${quote}</h4>`;
-      var sectionClose = `</section>`;
-      savedParent.innerHTML += sectionOpen + imgElement + h2Element + h4Element + sectionClose;
-    };
+    // for (var i = 0; i < savedPosters.length; i++) {
+    //   var imageURL = savedPosters[i].imageURL;
+    //   var title = savedPosters[i].title;
+    //   var quote = savedPosters[i].quote;
+    //   var sectionOpen = `<section class='mini-poster'>`;
+    //   var imgElement = `<img src=${imageURL}>`;
+    //   var h2Element = `<h2>${title}</h2>`;
+    //   var h4Element = `<h4>${quote}</h4>`;
+    //   var sectionClose = `</section>`;
+    //   savedParent.innerHTML += sectionOpen + imgElement + h2Element + h4Element + sectionClose;
+    // };
   };
 };
