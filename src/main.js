@@ -200,7 +200,7 @@ function addToArray(arr, item) {
 
 function savePoster() {
   if (!savedPosters.includes(currentPoster)) {
-    savedPosters.push(currentPoster);
+    addToArray(savedPosters, currentPoster);
     var id = currentPoster.id;
     var imageURL = currentPoster.imageURL;
     var title = currentPoster.title;
