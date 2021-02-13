@@ -125,7 +125,7 @@ var buttons = {
 
 var savedPosters = [];
 var currentPoster;
-var clickedPoster =
+var miniPoster = document.querySelector('.mini-poster');
 
 //saved posters section
 //article element
@@ -142,6 +142,7 @@ buttons.backToMain.addEventListener('click', showMain);
 buttons.makePoster.addEventListener('click', customizePoster);
 buttons.savePoster.addEventListener('click', savePoster);
 window.addEventListener('dblclick', deletePoster)
+// miniPoster.addEventListener('dblclick', deletePoster);
 
 // buttons.savePoster.addEventListener('click', addToSavedGrid);
 
@@ -208,16 +209,20 @@ function savePoster() {
     var imageURL = currentPoster.imageURL;
     var title = currentPoster.title;
     var quote = currentPoster.quote;
-    var sectionOpen = `<section class='mini-poster' ${id}>`;
-    var imgElement = `<img class=${id} src=${imageURL}>`;
-    var h2Element = `<h2 class=${id}>${title}</h2>`;
-    var h4Element = `<h4 class=${id}>${quote}</h4>`;
+    var sectionOpen = `<section class='mini-poster' id="${id}">`;
+    var imgElement = `<img id=${id} src=${imageURL}>`;
+    var h2Element = `<h2 id=${id}>${title}</h2>`;
+    var h4Element = `<h4 id=${id}>${quote}</h4>`;
     var sectionClose = `</section>`;
     savedParent.innerHTML += sectionOpen + imgElement + h2Element + h4Element + sectionClose;
   };
 };
 
-function deletePoster(event) {
-var click = event.target.getAttribute('id');
-return click
+
+function deletePoster() {
+var id = event.target.getAttribute('id');
+var deleteTarget = document.getElementById(id);
+// if (deleteTarget)
+deleteTarget.remove();
+return id
 };
