@@ -151,6 +151,7 @@ function displayPoster(imageUrl, title, quote) {
   posterImage.src = imageUrl;
   posterTitle.innerText = title;
   posterQuote.innerText = quote;
+  currentPoster = new Poster(imageUrl, title, quote);
   event.preventDefault();
 };
 
@@ -161,7 +162,6 @@ function randomizePoster() {
     randomPieces.push(arrays[i][getRandomIndex(arrays[i])]);
   };
   displayPoster(randomPieces[0], randomPieces[1], randomPieces[2]);
-  currentPoster = new Poster(randomPieces[0], randomPieces[1], randomPieces[2]);
 };
 
 function customizePoster() {
@@ -171,7 +171,6 @@ function customizePoster() {
   for (var i = 0; i < posterElements.length; i++) {
     addToArray(posterElements[i], posterValues[i].value);
   };
-  currentPoster = new Poster(imageCustom.value, titleCustom.value, quoteCustom.value);
   showMain();
 };
 
