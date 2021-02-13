@@ -215,7 +215,6 @@ function savePoster() {
 };
 
 function deletePoster() {
-  debugger
   var id = event.target.getAttribute('id');
   var deleteTarget = document.getElementById(id);
   for (var i = 0; i < savedPosters.length; i++) {
