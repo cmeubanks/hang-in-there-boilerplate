@@ -159,8 +159,8 @@ function randomizePoster() {
   for (var i = 0; i < arrays.length; i++) {
     randomPieces.push(arrays[i][getRandomIndex(arrays[i])]);
   };
-  displayPoster(randomPieces[0],randomPieces[1],randomPieces[2]);
-  currentPoster = new Poster(randomPieces[0],randomPieces[1],randomPieces[2]);
+  displayPoster(randomPieces[0], randomPieces[1], randomPieces[2]);
+  currentPoster = new Poster(randomPieces[0], randomPieces[1], randomPieces[2]);
 };
 
 function customizePoster() {
@@ -182,34 +182,10 @@ function hide(pageShow, pageHide1, pageHide2) {
 
 function makeOwnShow() {
   hide(posterForm, mainPoster, savedPoster)
-};s
+};
 
 function showSavedShow() {
   hide(savedPoster, posterForm, mainPoster)
-  for (var i = 0; i < savedPosters.length; i++) {
-
-    var imageURL = savedPosters[i].imageURL;
-    var title = savedPosters[i].title;
-    var quote = savedPosters[i].quote;
-    var sectionOpen = `<section class='mini-poster'>`;
-    var imgElement = `<img src=${imageURL}>`;
-    var h2Element = `<h2>${title}</h2>`;
-    var h4Element = `<h4>${quote}</h4>`;
-    var sectionClose = `</section>`;
-    savedParent.innerHTML += sectionOpen + imgElement + h2Element + h4Element + sectionClose;
-}
-  //.innerHTML here
-  // var imgElement = `<img class='' src=${imageUrl}>`
-  // var h2Element = `<h2 class=''>${title}</h2>`
-  // var h4Element = `<h4 class=''>${quote}</h4>`
-  // savedParent.innerHTML = imgElement +
-  // savedParent.innerHTML =
-  // "<section class='mini-poster'>
-  // <img class='' src=${}>
-  // <h2 class=''>${}</h2>
-  // <h4 class=''>${}</h4>
-  // </section>"
-
 };
 
 function showMain() {
@@ -224,6 +200,17 @@ function addToArray(arr, item) {
 
 function savePoster() {
   if (!savedPosters.includes(currentPoster)) {
-  savedPosters.push(currentPoster);
+    savedPosters.push(currentPoster);
+    for (var i = 0; i < savedPosters.length; i++) {
+      var imageURL = savedPosters[i].imageURL;
+      var title = savedPosters[i].title;
+      var quote = savedPosters[i].quote;
+      var sectionOpen = `<section class='mini-poster'>`;
+      var imgElement = `<img src=${imageURL}>`;
+      var h2Element = `<h2>${title}</h2>`;
+      var h4Element = `<h4>${quote}</h4>`;
+      var sectionClose = `</section>`;
+      savedParent.innerHTML += sectionOpen + imgElement + h2Element + h4Element + sectionClose;
+    };
   };
 };
