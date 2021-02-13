@@ -131,9 +131,9 @@ var miniPoster = document.querySelector('.mini-poster');
 //article element
 var savedParent = document.querySelector('.saved-posters-grid');
 
-
 // event listeners go here 👇
 window.addEventListener('load', randomizePoster);
+window.addEventListener('dblclick', deletePoster)
 buttons.random.addEventListener('click', randomizePoster);
 buttons.makeYourOwn.addEventListener('click', makeOwnShow);
 buttons.showSaved.addEventListener('click', showSavedShow);
@@ -141,10 +141,6 @@ buttons.nevermindShowMain.addEventListener('click', showMain);
 buttons.backToMain.addEventListener('click', showMain);
 buttons.makePoster.addEventListener('click', customizePoster);
 buttons.savePoster.addEventListener('click', savePoster);
-window.addEventListener('dblclick', deletePoster)
-// miniPoster.addEventListener('dblclick', deletePoster);
-
-// buttons.savePoster.addEventListener('click', addToSavedGrid);
 
 // functions and event handlers go here 👇
 function getRandomIndex(array) {
@@ -218,13 +214,12 @@ function savePoster() {
   };
 };
 
-
 function deletePoster() {
   debugger
   var id = event.target.getAttribute('id');
   var deleteTarget = document.getElementById(id);
   for (var i = 0; i < savedPosters.length; i++) {
-    if (savedPosters[i].id === id) {
+    if (savedPosters[i].id == id) {
       deleteTarget.remove();
       savedPosters.splice(i, 1)
     };
